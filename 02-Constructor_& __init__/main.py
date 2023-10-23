@@ -1,18 +1,28 @@
 # __nit__ can also be called constructor
-# allow us to set attributes for the class
+# allow us to set instance attributes
 # these attributes must be passed when an isntance of a class is created
 
 
 class Item:
 
     # __init__ is a magic method
-    def __init__(self, name, price, quantity = 0): # we can set default values, and assignt 
+    def __init__(self, name:str, price: float, quantity = 0): # we can set default values, and assignt 
          #print("I am created") # example to show that the constructor is called when instance is created.
             #print(f"An instance created: {name}")
 
+            # Run validations to recieve arguments.
+            # validate the values using assert statements: used to check if there is a match between what is happening, to your expectations.
+
+            assert price >= 0, f"Price {price} is not greater than or equal to zero!" # if values does not meet statement it will throw assertion error
+            assert quantity >= 0, f"Price {price} is not greater than or equal to zero!" # ex.. -1 will throw assertion error
+            
+            
+            # Assign to self object
             self.name = name # now we are dynamically assiging attribute to the class
             self.price = price 
             self.quantity = quantity
+            # validate the values using assert statements: used to check if there is a match between what is happening, to your expectations.
+            
 
     def calculate_total_price(self): # this method no longer needs parameters as they have been assigned by the constructor
         return self.price * self.quantity
